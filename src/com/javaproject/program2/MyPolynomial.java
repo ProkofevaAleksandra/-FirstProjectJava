@@ -12,6 +12,34 @@ public class MyPolynomial {
         this.coeffs=coeffs.clone();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+        MyPolynomial myPolynomial = (MyPolynomial) obj;
+        return equalsInts(myPolynomial.coeffs);
+    }
+
+    private boolean equalsInts(double[] coeffs) {
+        return Arrays.equals(this.coeffs,coeffs);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + intsHashCode(coeffs);
+        return result;
+    }
+
+    private int intsHashCode(double[] coeffs) {
+       int result = 17;
+
+       for (double coeff : coeffs) result = (int) (31 * result + Double.doubleToLongBits(coeff));
+       return result;
+    }
+
     public int getDegree(){
         return coeffs.length;
     }

@@ -15,6 +15,27 @@ public class MyPoint {
         this.y=y;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+
+        MyPoint myPoint = (MyPoint) obj;
+        return this.x == myPoint.x
+                && this.y == myPoint.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + x;
+        result = 31 * result + y;
+
+        return result;
+    }
+
     public int getX() {
         return x;
     }

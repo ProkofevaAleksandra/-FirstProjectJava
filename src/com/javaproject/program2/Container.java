@@ -14,6 +14,31 @@ public class Container {
         y2 = y + height;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+
+        Container container = (Container) obj;
+        return this.x1 == container.x1
+                && this.x2 == container.x2
+                && this.y1 == container.y1
+                && this.y2 == container.y2;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + x1;
+        result = 31 * result + x2;
+        result = 31 * result + y1;
+        result = 31 * result + y2;
+
+        return result;
+    }
+
     public int getX1(){
         return x1;
     }

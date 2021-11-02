@@ -13,6 +13,27 @@ public class Rectangle {
         this.width=width;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+
+        Rectangle rectangle = (Rectangle) obj;
+        return Float.floatToIntBits(this.length) == Float.floatToIntBits(rectangle.length)
+                && Float.floatToIntBits(this.width) == Float.floatToIntBits(rectangle.width);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + Float.floatToIntBits(length);
+        result = 31 * result + Float.floatToIntBits(width);
+
+        return result;
+    }
+
     public float getLength() {
         return length;
     }

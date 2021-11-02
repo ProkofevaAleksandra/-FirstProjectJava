@@ -18,6 +18,33 @@ public class Ball {
         this.yDelta = - speed * sin(direction);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+
+        Ball ball = (Ball) obj;
+        return Float.floatToIntBits(this.x) == Float.floatToIntBits(ball.x)
+                &&  Float.floatToIntBits(this.y) == Float.floatToIntBits(ball.y)
+                &&this.radius == ball.radius
+                && Double.doubleToLongBits(this.xDelta) == Double.doubleToLongBits(ball.xDelta)
+                && Double.doubleToLongBits(this.yDelta) == Double.doubleToLongBits(ball.yDelta);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + result;
+        result = 31 * result + Float.floatToIntBits(x);
+        result = 31 * result + Float.floatToIntBits(y);
+        result = (int) (31 * result + Double.doubleToLongBits(xDelta));
+        result = (int) (31 * result + Double.doubleToLongBits(yDelta));
+
+        return result;
+    }
+
     public float getX() {
         return x;
     }

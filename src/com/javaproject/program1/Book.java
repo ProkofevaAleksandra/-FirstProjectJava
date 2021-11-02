@@ -1,5 +1,7 @@
 package com.javaproject.program1;
 
+import java.util.Arrays;
+
 public class Book {
 
     private String name;
@@ -21,6 +23,41 @@ public class Book {
         this.authors = authors;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+        Book book = (Book) obj;
+        return this.name.equals(book.name)
+                && Double.doubleToLongBits(this.price) == Double.doubleToLongBits(book.price)
+                &&this.qty == book.qty
+                && equalsUnits(book.authors);
+    }
+
+    private boolean equalsUnits(Authors[] authors) {
+       return Arrays.equals(this.authors, authors);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + name.hashCode();
+        result = (int) (31 * result + Double.doubleToLongBits(price));
+        result = 31 * result + qty;
+        result = 31 * result + unitsHashCode(authors);
+
+        return result;
+    }
+
+    private int unitsHashCode(Authors[] authors) {
+
+       int result = 17;
+       for (int i = 0; i < authors.length; i++)
+           result = 31 * result + authors[i].hashCode();
+       return result;
+    }
 
     public String getName() {
         return name;
@@ -63,7 +100,7 @@ public class Book {
     public String getAuthorNames() {
         System.out.print("Authors = ");
         for(int i = 0; i < authors.length; i++)
-            System.out.print( authors[i].getName(authors)+" ");
+            System.out.print( authors[i].getName()+" ");
         return " ";
     }
 }

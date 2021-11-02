@@ -14,6 +14,31 @@ public class Employee {
         this.salary=salary;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+
+        Employee employee = (Employee) obj;
+        return this.id == employee.id
+                && this.firstName.equals(employee.firstName)
+                && this.lastName.equals(employee.lastName)
+                && this.salary == employee.salary;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + id;
+        result = 31 * result + salary;
+        result = 31 * result + firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+
+        return result;
+    }
+
     public int getId() {
         return id;
     }

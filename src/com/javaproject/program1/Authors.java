@@ -2,7 +2,6 @@ package com.javaproject.program1;
 
 public class Authors {
 
-    //public static String getName;
     private String name;
     private String email;
     private char gender;
@@ -21,7 +20,28 @@ public class Authors {
                 ", gender="+gender +']';
     }
 
-    public String getName(Authors[] authors){
-        return name;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+
+        Authors authors = (Authors) obj;
+        return this.name.equals(authors.name)
+                && this.email.equals(authors.email)
+                && this.gender == authors.gender;
     }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = 31 * result + (int)gender;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + email.hashCode();
+
+        return result;
+    }
+
+   public String getName(){ return name; }
 }

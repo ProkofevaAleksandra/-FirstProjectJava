@@ -17,6 +17,27 @@ public class Circle {
         this.color=color;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+        Circle circle = (Circle) obj;
+        return Double.doubleToLongBits(this.radius) == Double.doubleToLongBits(circle.radius)
+                && this.color.equals(circle.color);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = (int) (31 * result + Double.doubleToLongBits(radius));
+        result = 31 * result + color.hashCode();
+
+        return result;
+    }
+
     public double getRadius() {
         return radius;
     }
