@@ -13,6 +13,27 @@ public class MyComplex {
         this.real=real;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if ((obj == null) || (this.getClass() != obj.getClass())) return false;
+        MyComplex myComplex = (MyComplex) obj;
+        return Double.doubleToLongBits(this.real) == Double.doubleToLongBits(myComplex.real)
+                && Double.doubleToLongBits(this.imag) == Double.doubleToLongBits(myComplex.imag);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+
+        result = (int) (31 * result + Double.doubleToLongBits(real));
+        result = (int) (31 * result + Double.doubleToLongBits(imag));
+
+        return result;
+    }
+
     public double getReal(){
         return real;
     }
